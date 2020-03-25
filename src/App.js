@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react'
-import words from './words.json'
 import alphabet from './letters.json'
 import Step0 from './images/step_0.png'
 import Step1 from './images/step_1.png'
@@ -9,6 +8,7 @@ import Step4 from './images/step_4.png'
 import Step5 from './images/step_5.png'
 import Step6 from './images/step_6.png'
 import Step7 from './images/step_7.png'
+import axios from 'axios'
 
 const App = () => {
   const images = [Step0, Step1, Step2, Step3, Step4, Step5, Step6, Step7]
@@ -17,9 +17,14 @@ const App = () => {
   const [randomWord, setRandomWord] = useState('')
   const [revealedLetters, setRevealedLetters] = useState([])
 
+  const createRandomWord = async () => {
+    const url = 'https://sdg-words.herokuapp.com/api/words/random'
+    const resp = await axios.get(url)
+    setRandomWord(resp.data.word)
+  }
   useEffect(() => {
     // a random word picked from the words.json file
-    setRandomWord(words[Math.ceil(Math.random() * words.length)])
+    createRandomWord()
   }, [])
 
   // split the word into an array
@@ -39,7 +44,7 @@ const App = () => {
   const resetGame = () => {
     setClickedLetters([])
     setRevealedLetters([])
-    setRandomWord(words[Math.ceil(Math.random() * words.length)])
+    createRandomWord()
   }
 
   return (
