@@ -48,59 +48,66 @@ const App = () => {
   }
 
   return (
-    <main>
-      <section className="randomWord">
-        {letters.map((letter) => {
-          return (
-            <div className="underlineLetter" key={letter}>
-              <div
-                className={
-                  clickedLetters.includes(letter.toUpperCase())
-                    ? ''
-                    : 'hiddenLetter'
-                }
-                key={letter}
-              >
-                {letter}
-              </div>
-            </div>
-          )
-        })}
-      </section>
-      <section>
-        {alphabet.map((letter) => {
-          return (
-            <button
-              onClick={checkLetter}
-              className="letterOfAlphabet"
-              disabled={
-                clickedLetters.includes(letter.toUpperCase()) ||
-                incorrectlyGuessedLetters.length > 6
-                  ? true
-                  : false
-              }
-              value={letter}
-              key={letter}
-            >
-              {letter}
+    <>
+      <header>Snowman</header>
+      <main>
+        <section className="word">
+          <section className="randomWord">
+            {letters.map((letter) => {
+              return (
+                <div className="underlineLetter" key={letter}>
+                  <div
+                    className={
+                      clickedLetters.includes(letter.toUpperCase())
+                        ? ''
+                        : 'hiddenLetter'
+                    }
+                    key={letter}
+                  >
+                    {letter}
+                  </div>
+                </div>
+              )
+            })}
+          </section>
+          <section className="alphabet">
+            {alphabet.map((letter) => {
+              return (
+                <button
+                  onClick={checkLetter}
+                  className="letterOfAlphabet"
+                  disabled={
+                    clickedLetters.includes(letter.toUpperCase()) ||
+                    incorrectlyGuessedLetters.length > 6
+                      ? true
+                      : false
+                  }
+                  value={letter}
+                  key={letter}
+                >
+                  {letter}
+                </button>
+              )
+            })}
+          </section>
+          <section className="resetButton">
+            <button className="reset" onClick={resetGame}>
+              Reset
             </button>
-          )
-        })}
-      </section>
-      <section className="resetButton">
-        <button className="reset" onClick={resetGame}>
-          Reset
-        </button>
-      </section>
-      <section>
-        {/* <img src={`./images/step_${revealedLetters.length}.png`} /> */}
-        <img
-          width="300"
-          src={images[incorrectlyGuessedLetters.length]}
-          alt="step"
-        />
-      </section>
-    </main>
+          </section>
+        </section>
+        <section className="displayedImage">
+          <section>
+            {/* <img src={`./images/step_${revealedLetters.length}.png`} /> */}
+            <img
+              width="300"
+              src={images[incorrectlyGuessedLetters.length]}
+              alt="step"
+            />
+          </section>
+        </section>
+      </main>
+    </>
   )
 }
 
