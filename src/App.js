@@ -15,7 +15,7 @@ const App = () => {
   // state variable to track clicked letters
   const [clickedLetters, setClickedLetters] = useState([])
   const [randomWord, setRandomWord] = useState('')
-  const [revealedLetters, setRevealedLetters] = useState([])
+  const [incorrectlyGuessedLetters, setIncorrectlyGuessedLetters] = useState([])
 
   const createRandomWord = async () => {
     const url = 'https://sdg-words.herokuapp.com/api/words/random'
@@ -36,14 +36,14 @@ const App = () => {
     setClickedLetters((oldLetter) => [...oldLetter, value])
 
     //setRevealedLetters
-    if (letters.includes(value.toLowerCase())) {
-      setRevealedLetters((oldLetter) => [...oldLetter, value])
+    if (!letters.includes(value.toLowerCase())) {
+      setIncorrectlyGuessedLetters((oldLetter) => [...oldLetter, value])
     }
   }
 
   const resetGame = () => {
     setClickedLetters([])
-    setRevealedLetters([])
+    setIncorrectlyGuessedLetters([])
     createRandomWord()
   }
 
@@ -74,7 +74,10 @@ const App = () => {
               onClick={checkLetter}
               className="letterOfAlphabet"
               disabled={
-                clickedLetters.includes(letter.toUpperCase()) ? true : false
+                clickedLetters.includes(letter.toUpperCase()) ||
+                incorrectlyGuessedLetters.length > 6
+                  ? true
+                  : false
               }
               value={letter}
               key={letter}
@@ -91,7 +94,11 @@ const App = () => {
       </section>
       <section>
         {/* <img src={`./images/step_${revealedLetters.length}.png`} /> */}
-        <img width="300" src={images[revealedLetters.length]} />
+        <img
+          width="300"
+          src={images[incorrectlyGuessedLetters.length]}
+          alt="step"
+        />
       </section>
     </main>
   )
