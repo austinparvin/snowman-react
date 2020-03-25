@@ -26,9 +26,6 @@ const App = () => {
   const letters = randomWord.split('')
 
   const checkLetter = (e) => {
-    // disables button
-    e.target.disabled = true
-
     // log that is been clicked
     const value = e.target.value
     setClickedLetters((oldLetter) => [...oldLetter, value])
@@ -37,6 +34,12 @@ const App = () => {
     if (letters.includes(value.toLowerCase())) {
       setRevealedLetters((oldLetter) => [...oldLetter, value])
     }
+  }
+
+  const resetGame = () => {
+    setClickedLetters([])
+    setRevealedLetters([])
+    setRandomWord(words[Math.ceil(Math.random() * words.length)])
   }
 
   return (
@@ -65,6 +68,9 @@ const App = () => {
             <button
               onClick={checkLetter}
               className="letterOfAlphabet"
+              disabled={
+                clickedLetters.includes(letter.toUpperCase()) ? true : false
+              }
               value={letter}
               key={letter}
             >
@@ -72,6 +78,11 @@ const App = () => {
             </button>
           )
         })}
+      </section>
+      <section className="resetButton">
+        <button className="reset" onClick={resetGame}>
+          Reset
+        </button>
       </section>
       <section>
         {/* <img src={`./images/step_${revealedLetters.length}.png`} /> */}
