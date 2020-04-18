@@ -6,14 +6,13 @@ A less grim variation of a popular game _Hangman_. Built in React.
 
 - Reinforce component architecture in React
 - Effective use props and state in React
+- Use RFCs in place of RCCs
 
 # Includes: 
 
-- [HTML](https://developer.mozilla.org/en-US/docs/Web/HTML)
-- [CSS](https://www.w3schools.com/css/)
-- [JAVASCRIPT](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
-
 - [REACT](https://reactjs.org/docs/getting-started.html)
+- [RFC](https://reactjs.org/docs/components-and-props.html)
+- [HOOKS](https://reactjs.org/docs/hooks-intro.html)
 - [API INTEGRATION](https://sdg-words.herokuapp.com/api/words/random)
 
 - [NETLIFY](https://docs.netlify.com/?_ga=2.56383019.1272475466.1587169866-1421079835.1583768648)
