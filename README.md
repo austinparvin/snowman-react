@@ -15,8 +15,6 @@ A less grim variation of a popular game _Hangman_. Built in React.
 - [HOOKS](https://reactjs.org/docs/hooks-intro.html)
 - [API INTEGRATION](https://sdg-words.herokuapp.com/api/words/random)
 
-- [NETLIFY](https://docs.netlify.com/?_ga=2.56383019.1272475466.1587169866-1421079835.1583768648)
-
 # Requirements 
 
 - Selects a random word from the list and display a number of blank spaces (or underscores) equal to the word length
